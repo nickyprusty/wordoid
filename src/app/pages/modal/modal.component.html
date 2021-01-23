@@ -1,0 +1,34 @@
+<div class="modal-header justify-content-center">
+    <div class="modal-title">
+        <h4 class="text-dark" *ngIf="!editData">{{data.title}}</h4>
+        <div class="form-group" *ngIf="createPost">
+            <label for="userId">User ID</label>
+            <input type="text" class="form-control" id="userId" [(ngModel)]="editData.userId">
+        </div>
+        <div class="form-group" *ngIf="editData">
+            <label for="postTitle">Title</label>
+            <input type="text" class="form-control" id="postTitle" [(ngModel)]="editData.title">
+        </div>
+      </div>
+</div>
+<div class="modal-body">
+    <p *ngIf="!editData">{{data.body}}</p>
+    <div class="form-group" *ngIf="editData">
+        <label for="postDetails">Body</label>
+        <textarea class="form-control" id="postDetails" rows="10" [(ngModel)]="editData.body"></textarea>
+    </div>
+    <div class="alert-success p-2" *ngIf="successMessage" >
+        <p >{{successMessage}}</p>
+    </div>
+    
+</div>
+<div class="modal-footer text-right">
+    <ng-container *ngIf="!editData; else editableModal">
+        <button class="btn btn-default" type="button" (click)="editDetails()">Edit</button>
+        <button class="btn btn-danger" type="button" (click)="activeModal.close('Close click')">Close</button>
+    </ng-container>
+    <ng-template #editableModal>
+        <button class="btn btn-default" type="button" (click)="saveDetails()">Save</button>
+        <button class="btn btn-danger" type="button" (click)="cancelEdit()">Cancel</button>
+    </ng-template>
+</div>

@@ -1,0 +1,2 @@
+# wordoid
+A simple blog
